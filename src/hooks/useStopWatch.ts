@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 const useStopWatch = (initialTime = 0) => {
   const [timer, setTimer] = useState<number>(initialTime);
   const [isRunning, setIsRunning] = useState(false);
-  const timerId = useRef<number | undefined>(undefined);
+  const timerId = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   const start = () => {
     if (timerId.current != undefined) return;
@@ -16,7 +16,7 @@ const useStopWatch = (initialTime = 0) => {
   const pause = () => {
     if (timerId.current === undefined) return;
     setIsRunning(false);
-    clearTimeout(timerId.current);
+    clearInterval(timerId.current as unknown as number);
     timerId.current = undefined;
   };
 
