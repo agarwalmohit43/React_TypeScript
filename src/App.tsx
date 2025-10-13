@@ -14,6 +14,7 @@ import Portal from "./components/ReactPrac/Portal";
 import { UserContext } from "./context/Context";
 import { User } from "./components/User";
 import { ProgressBar } from "./components/ProgressBar";
+import { OTPInputType2 } from "./components/OTPInputType2";
 export default function App() {
   return (
     <div
@@ -36,8 +37,9 @@ export default function App() {
       <HOCConsumer /> 
       <UserContext.Provider value={{ name: "Mohit" }}>
         <User />
-      </UserContext.Provider> */}
-      <ProgressBar />
+      </UserContext.Provider> 
+      <ProgressBar /> */}
+      <OTPInputType2 />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 const DigitInput = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { key, target } = event;
-    const ascii = key.length === 1 && key.charCodeAt(0);
+    const ascii = Number(key.length === 1 && key.charCodeAt(0));
     if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
       event.preventDefault();
     }

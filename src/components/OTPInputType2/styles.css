@@ -1,0 +1,7 @@
+.otp-input {
+  border: 1px solid rgba(20, 107, 207, 0.314);
+  width: 20px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+}
