@@ -1,0 +1,14 @@
+.outerDiv {
+  border: 1px solid black;
+  margin: 10px 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.innerDiv {
+  background-color: green;
+  color: white;
+  text-align: right;
+  padding: 1px;
+  transition: 0.5s ease-in;
+}

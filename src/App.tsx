@@ -13,6 +13,7 @@ import { HOCConsumer, NestedDependency } from "./components/ReactPrac";
 import Portal from "./components/ReactPrac/Portal";
 import { UserContext } from "./context/Context";
 import { User } from "./components/User";
+import { ProgressBar } from "./components/ProgressBar";
 export default function App() {
   return (
     <div
@@ -32,10 +33,11 @@ export default function App() {
       <StarRating /> 
       <NestedDependency />
       <Portal /> 
-      <HOCConsumer /> */}
+      <HOCConsumer /> 
       <UserContext.Provider value={{ name: "Mohit" }}>
         <User />
-      </UserContext.Provider>
+      </UserContext.Provider> */}
+      <ProgressBar />
     </div>
   );
 }
