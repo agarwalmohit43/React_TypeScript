@@ -15,6 +15,7 @@ import { UserContext } from "./context/Context";
 import { User } from "./components/User";
 import { ProgressBar } from "./components/ProgressBar";
 import { OTPInputType2 } from "./components/OTPInputType2";
+import { AutoCompleteUPI } from "./components/AutoCompleteUPI";
 export default function App() {
   return (
     <div
@@ -38,8 +39,9 @@ export default function App() {
       <UserContext.Provider value={{ name: "Mohit" }}>
         <User />
       </UserContext.Provider> 
-      <ProgressBar /> */}
-      <OTPInputType2 />
+      <ProgressBar /> 
+      <OTPInputType2 />  */}
+      <AutoCompleteUPI />
     </div>
   );
 }
