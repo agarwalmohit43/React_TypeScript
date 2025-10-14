@@ -8,7 +8,33 @@ const FacebookTagging = () => {
   const [cordinates, setCordinates] = useState({ x: 0, y: 0 });
   const [showTagInput, setShowTagInput] = useState(false);
   const [tagName, setTagName] = useState("");
-  const handleMouseOver = (e: React.MouseEvent<any>) => {};
+  const [hoveredTag, setHoveredTag] = useState<any | null>(null); // 🆕 for floating div
+
+  const handleMouseOver = (e: React.MouseEvent<any>) => {
+    const tolerance = 15; // distance threshold for hover detection
+    const foundTag = data.find((tag) => {
+      const [x, y] = tag.dataKey
+        .replace("x:", "")
+        .replace("y:", "")
+        .split(",")
+        .map((v: string) => parseFloat(v));
+
+      return (
+        Math.abs(e.clientX - x) < tolerance &&
+        Math.abs(e.clientY - y) < tolerance
+      );
+    });
+
+    if (foundTag) {
+      setHoveredTag({
+        ...foundTag,
+        x: e.clientX,
+        y: e.clientY,
+      });
+    } else {
+      setHoveredTag(null);
+    }
+  };
 
   const handleAreaClick = (e: React.MouseEvent<any>) => {
     setCordinates({ x: e.clientX, y: e.clientY });
@@ -26,8 +52,6 @@ const FacebookTagging = () => {
       setTagName("");
     }
   };
-
-  console.log(data);
 
   return (
     <div
@@ -60,6 +84,26 @@ const FacebookTagging = () => {
             );
           })
         : null}
+      {/* 🧠 Floating Div on Hover */}
+      {hoveredTag && (
+        <div
+          style={{
+            position: "fixed",
+            top: hoveredTag.y + 15,
+            left: hoveredTag.x + 15,
+            background: "white",
+            border: "1px solid #ddd",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            borderRadius: "8px",
+            padding: "8px 12px",
+            pointerEvents: "none",
+            transition: "opacity 0.2s ease",
+            zIndex: 999,
+          }}
+        >
+          👋 Hello World — {hoveredTag.tagName}
+        </div>
+      )}
     </div>
   );
 };
