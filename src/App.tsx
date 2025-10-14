@@ -16,6 +16,8 @@ import { User } from "./components/User";
 import { ProgressBar } from "./components/ProgressBar";
 import { OTPInputType2 } from "./components/OTPInputType2";
 import { AutoCompleteUPI } from "./components/AutoCompleteUPI";
+import { FacebookTagging } from "./components/FacebookTagging";
+
 export default function App() {
   return (
     <div
@@ -40,8 +42,9 @@ export default function App() {
         <User />
       </UserContext.Provider> 
       <ProgressBar /> 
-      <OTPInputType2 />  */}
-      <AutoCompleteUPI />
+      <OTPInputType2 />  
+      <AutoCompleteUPI /> */}
+      <FacebookTagging />
     </div>
   );
 }
