@@ -39,6 +39,18 @@ const AccordionItem = ({
         }`}</span>
       </div>
       {isOpened && <p>{content}</p>}
+
+      {/* <div
+        className="accordion-content"
+        style={{
+          maxHeight: isOpened ? "200px" : "0px",
+          overflow: "hidden",
+          opacity: isOpened ? 1 : 0,
+          transition: "all 0.4s ease",
+        }}
+      >
+        <p style={{ padding: "16px", margin: 0 }}>{content}</p>
+      </div> */}
     </div>
   );
 };

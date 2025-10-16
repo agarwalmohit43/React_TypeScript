@@ -43,11 +43,12 @@ export default function App() {
         <User />
       </UserContext.Provider> 
       <ProgressBar /> 
-      <OTPInputType2 />  
+      <OTPInputType2 />
       <AutoCompleteUPI /> 
-      <FacebookTagging />*/}
+      <FacebookTagging />
+      <ChipsTag />*/}
 
-      <ChipsTag />
+      <Accordion data={accordionData} />
     </div>
   );
 }
