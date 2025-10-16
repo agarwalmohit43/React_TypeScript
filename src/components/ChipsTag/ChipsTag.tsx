@@ -26,6 +26,7 @@ const ChipsTag = () => {
         tagName,
       };
       setData((prev) => [...prev, newChip]);
+      setTagName("");
     }
   };
 
