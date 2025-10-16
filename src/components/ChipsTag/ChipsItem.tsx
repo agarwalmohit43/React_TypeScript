@@ -6,6 +6,8 @@ type ChipsItemProps = ChipsTagInterface & {
 };
 
 const ChipsItem = ({ id, tagName, handleDelete }: Readonly<ChipsItemProps>) => {
+  console.log("Rendered", tagName);
+
   return (
     <div className="chips-item">
       {tagName}
