@@ -18,6 +18,7 @@ import { OTPInputType2 } from "./components/OTPInputType2";
 import { AutoCompleteUPI } from "./components/AutoCompleteUPI";
 import { FacebookTagging } from "./components/FacebookTagging";
 import { ChipsTag } from "./components/ChipsTag";
+import { Tabs } from "./components/FormComponentWithTabs";
 
 export default function App() {
   return (
@@ -48,7 +49,7 @@ export default function App() {
       <FacebookTagging />
       <ChipsTag />*/}
 
-      <Accordion data={accordionData} />
+      <Tabs />
     </div>
   );
 }
