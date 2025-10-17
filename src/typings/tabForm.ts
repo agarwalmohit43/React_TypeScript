@@ -16,9 +16,10 @@ export interface Data {
   email: string;
   interests: InterestsData[];
   config: {
-    theme?: string;
+    theme: "dark" | "light";
     role: "admin" | "normal";
   };
+  isValid: boolean;
 }
 
 export interface TabFormChildComponentProps {

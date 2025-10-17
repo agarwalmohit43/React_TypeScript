@@ -1,52 +1,16 @@
-import React, { Suspense, useState } from "react";
+import { Suspense, useState } from "react";
 import "./styles.css";
-import Profile from "./components/Profile";
-import { TabFormContext } from "../../context/TabFormContext";
-import { Data, TabComponent } from "../../typings/tabForm";
-import Interests from "./components/Interests";
-
+import { Data } from "../../typings/tabForm";
+import { initialValue, tabsConfig } from "../../constants/tabForm";
 const Tabs = () => {
-  const [data, setData] = useState<Data>({
-    name: "Test",
-    age: 22,
-    email: "aagrwalmohit43@gmail.com",
-    interests: [
-      {
-        name: "coding",
-        isChecked: true,
-      },
-      {
-        name: "exploring",
-        isChecked: true,
-      },
-      {
-        name: "workout",
-        isChecked: true,
-      },
-    ],
-    config: {
-      theme: "dark",
-      role: "normal",
-    },
-  });
+  const [data, setData] = useState<Data>(initialValue);
   const [activeIndex, setActiveIndex] = useState(0);
-  const tabsConfig: { name: string; component: TabComponent }[] = [
-    {
-      name: "Profile",
-      component: Profile,
-    },
-    {
-      name: "Interests",
-      // component: React.lazy(() => import("./components/Interests")),
-      component: Interests,
-    },
-    {
-      name: "Settings",
-      component: React.lazy(() => import("./components/Settings")),
-    },
-  ];
 
   const ActiveTabComponents = tabsConfig[activeIndex].component;
+
+  const handleSubmit = () => {
+    console.log(data);
+  };
 
   return (
     <div>
@@ -67,6 +31,35 @@ const Tabs = () => {
         <Suspense fallback={<div>Loading....</div>}>
           <ActiveTabComponents data={data} setData={setData} />
         </Suspense>
+      </div>
+      <div className="action-navigatio-submit-btns">
+        {activeIndex > 0 && (
+          <button
+            className="action-btns"
+            disabled={!data.isValid}
+            onClick={() => setActiveIndex((index) => index - 1)}
+          >
+            Prev
+          </button>
+        )}
+        {activeIndex < tabsConfig.length - 1 && (
+          <button
+            className="action-btns"
+            disabled={!data.isValid}
+            onClick={() => setActiveIndex((index) => index + 1)}
+          >
+            Next
+          </button>
+        )}
+        {activeIndex === tabsConfig.length - 1 && (
+          <button
+            className="action-btns"
+            disabled={!data.isValid}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        )}
       </div>
     </div>
   );

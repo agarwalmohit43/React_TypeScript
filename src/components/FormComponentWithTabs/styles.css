@@ -38,3 +38,14 @@
   margin: 0px 16px;
   padding: 4px;
 }
+
+.action-navigatio-submit-btns {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.action-btns {
+  padding: 8px;
+  font-weight: bold;
+}
