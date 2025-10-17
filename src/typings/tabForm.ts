@@ -22,9 +22,18 @@ export interface Data {
   isValid: boolean;
 }
 
+export type TabFormErrors = Partial<Record<keyof Data, string>>;
+
+export type ValidateFormErrors = (
+  data: Data,
+  setError: Dispatch<SetStateAction<TabFormErrors>>
+) => void;
 export interface TabFormChildComponentProps {
   data: Data;
   setData: Dispatch<SetStateAction<Data>>;
+  errors: TabFormErrors;
+  setErrors: Dispatch<SetStateAction<TabFormErrors>>;
+  validate?: ValidateFormErrors;
 }
 
 export type TabComponent =
