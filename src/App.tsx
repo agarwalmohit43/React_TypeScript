@@ -19,6 +19,12 @@ import { AutoCompleteUPI } from "./components/AutoCompleteUPI";
 import { FacebookTagging } from "./components/FacebookTagging";
 import { ChipsTag } from "./components/ChipsTag";
 import { Tabs } from "./components/FormComponentWithTabs";
+import RoutingBasic from "./components/RoutingBasic/RoutingBasic";
+import { BasicRouter } from "./components/RoutingBasic/routes/BasicRouter";
+import { Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import Profile from "./components/RoutingBasic/components/Profile";
+import About from "./components/RoutingBasic/components/About";
 
 export default function App() {
   return (
@@ -26,6 +32,15 @@ export default function App() {
       className="App"
       style={{ display: "flex", flexDirection: "column", gap: "20px" }}
     >
+      <div>
+        <BasicRouter />
+        {/* <Suspense fallback={<div>Loading....</div>}>
+          <Routes>
+            <Route path={"/profile"} element={<Profile />} />
+            <Route path={"/about"} element={<About />} />
+          </Routes>
+        </Suspense> */}
+      </div>
       {/* <TodoList />
       <Counter /> 
       
@@ -47,9 +62,9 @@ export default function App() {
       <OTPInputType2 />
       <AutoCompleteUPI /> 
       <FacebookTagging />
-      <ChipsTag />*/}
-
-      <Tabs />
+      <ChipsTag />
+      <Tabs />*/}
+      <RoutingBasic />
     </div>
   );
 }
