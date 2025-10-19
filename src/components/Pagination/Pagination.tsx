@@ -23,6 +23,7 @@ const Pagination = () => {
     totalPageNumber.current = Math.ceil(total / DEFUALT_PRODUCT_LIMIT);
     setTotalProductsCount(total);
     setProducts(products);
+    setActivePage(paginationSkip / DEFUALT_PRODUCT_LIMIT + 1);
   };
 
   useEffect(() => {
@@ -69,6 +70,7 @@ const Pagination = () => {
   );
 
   const debouncedHandlePaginationClick = debounce(handlePaginationClick, 100);
+  console.log(activePage);
 
   return (
     <div className="container">
