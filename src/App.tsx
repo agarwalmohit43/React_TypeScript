@@ -25,6 +25,7 @@ import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Profile from "./components/RoutingBasic/components/Profile";
 import About from "./components/RoutingBasic/components/About";
+import Pagination from "./components/Pagination/Pagination";
 
 export default function App() {
   return (
@@ -63,8 +64,10 @@ export default function App() {
       <AutoCompleteUPI /> 
       <FacebookTagging />
       <ChipsTag />
-      <Tabs />*/}
-      <RoutingBasic />
+      <Tabs />
+      <RoutingBasic /> */}
+
+      <Pagination />
     </div>
   );
 }
