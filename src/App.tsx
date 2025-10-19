@@ -21,7 +21,7 @@ import { ChipsTag } from "./components/ChipsTag";
 import { Tabs } from "./components/FormComponentWithTabs";
 import RoutingBasic from "./components/RoutingBasic/RoutingBasic";
 import { BasicRouter } from "./components/RoutingBasic/routes/BasicRouter";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Profile from "./components/RoutingBasic/components/Profile";
 import About from "./components/RoutingBasic/components/About";
@@ -29,7 +29,24 @@ import Pagination from "./components/Pagination/Pagination";
 import AutoCompleteRecipe from "./components/AutoCompleteRecipe/AutoCompleteRecipe";
 
 export default function App() {
-  return (
+  const [isOnline, setIsOnline] = useState(true);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
+
+  return !isOnline ? (
+    <h1>You are offline</h1>
+  ) : (
     <div
       className="App"
       style={{ display: "flex", flexDirection: "column", gap: "20px" }}

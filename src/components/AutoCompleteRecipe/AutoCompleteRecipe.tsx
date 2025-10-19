@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { RecipeInterface } from "../../typings/autoCompleteRecipe";
 import { RECIPE_SEARCH_URL } from "../../constants/autoCompleteRecipe";
 import { debounce } from "../../helpers";
@@ -8,8 +8,9 @@ const AutoCompleteRecipe = () => {
   const [recipeList, setRecipeList] = useState<RecipeInterface[]>([]);
   const [recipe, setRecipe] = useState<string>("");
   const [showResults, setShowResults] = useState(false);
+
   const fetchRecipe = useCallback(async (recipe: string) => {
-    const res = await fetch(RECIPE_SEARCH_URL(recipe)).then((res) =>
+    const res = await fetch(RECIPE_SEARCH_URL(recipe, 0)).then((res) =>
       res.json()
     );
 
@@ -21,7 +22,12 @@ const AutoCompleteRecipe = () => {
       setShowResults(false);
     }
   }, []);
-  const debouncedFetchRecipe = debounce(fetchRecipe, 1000);
+
+  const debouncedFetchRecipe = useMemo(
+    () => debounce(fetchRecipe, 1000),
+    [fetchRecipe]
+  );
+
   useEffect(() => {
     if (recipe) {
       debouncedFetchRecipe(recipe);
@@ -50,6 +56,8 @@ const AutoCompleteRecipe = () => {
           type="text"
           className="search-text"
           value={recipe}
+          onFocus={() => setShowResults(true)}
+          onBlur={() => setShowResults(false)}
           onChange={handleChangeRecipe}
         />
         {showResults ? (

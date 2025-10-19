@@ -17,6 +17,12 @@
   width: 500px;
   display: flex;
   flex-direction: column;
+  padding: 0px 8px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.search-item {
   padding: 4px 8px;
 }
 
