@@ -1,4 +1,4 @@
-.pagination-container {
+.container {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -16,8 +16,20 @@
   align-items: center;
   flex-direction: column;
   gap: 8px;
-  border: 1px solid black;
+  border: 1px solid rgb(146, 140, 183);
   border-radius: 20px;
   padding: 8px;
   width: 200px;
+}
+
+.pageNumber {
+  color: rgb(6, 6, 246);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
 }

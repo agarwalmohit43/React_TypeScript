@@ -4,3 +4,10 @@ export interface ProductItemInterface {
   availabilityStatus: string;
   price: number;
 }
+
+export interface ProductData {
+  products: ProductItemInterface[];
+  total: number;
+  skip: number;
+  limit: number;
+}
