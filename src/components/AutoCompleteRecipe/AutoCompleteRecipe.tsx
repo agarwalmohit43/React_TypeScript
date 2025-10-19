@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { RecipeInterface } from "../../typings/autoCompleteRecipe";
 import { RECIPE_SEARCH_URL } from "../../constants/autoCompleteRecipe";
-import { debounce } from "../../helpers";
+import { debounce, memoise } from "../../helpers";
 import "./styles.css";
 
 const AutoCompleteRecipe = () => {
@@ -9,30 +9,35 @@ const AutoCompleteRecipe = () => {
   const [recipe, setRecipe] = useState<string>("");
   const [showResults, setShowResults] = useState(false);
 
-  const fetchRecipe = useCallback(async (recipe: string) => {
-    const res = await fetch(RECIPE_SEARCH_URL(recipe, 0)).then((res) =>
-      res.json()
-    );
-
-    if (res.recipes.length > 0) {
-      setRecipeList(res.recipes);
-      setShowResults(true);
-    } else {
-      setRecipeList([]);
-      setShowResults(false);
-    }
-  }, []);
-
-  const debouncedFetchRecipe = useMemo(
-    () => debounce(fetchRecipe, 1000),
-    [fetchRecipe]
+  const fetchRecipe = useCallback(
+    async (q: string): Promise<RecipeInterface[]> => {
+      const res = await fetch(RECIPE_SEARCH_URL(q, 0)).then((r) => r.json());
+      return res?.recipes ?? [];
+    },
+    []
   );
 
+  const memoisedFetched = useMemo(() => memoise(fetchRecipe), [fetchRecipe]);
+
+  const debouncedFetchRecipe = useMemo(
+    () =>
+      debounce(async (q: string) => {
+        const data: RecipeInterface[] = await memoisedFetched(q);
+        if (data && data.length > 0) {
+          setRecipeList(data);
+          setShowResults(true);
+        } else {
+          setRecipeList([]);
+          setShowResults(false);
+        }
+      }, 300),
+    [memoisedFetched]
+  );
   useEffect(() => {
     if (recipe) {
       debouncedFetchRecipe(recipe);
     }
-  }, [recipe]);
+  }, [recipe, debouncedFetchRecipe]);
 
   const handleChangeRecipe = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
@@ -48,6 +53,8 @@ const AutoCompleteRecipe = () => {
     setShowResults(false);
   };
 
+  console.log(recipeList);
+
   return (
     <div>
       AutoCompleteRecipe
@@ -57,7 +64,7 @@ const AutoCompleteRecipe = () => {
           className="search-text"
           value={recipe}
           onFocus={() => setShowResults(true)}
-          onBlur={() => setShowResults(false)}
+          onBlur={() => setTimeout(() => setShowResults(false), 150)}
           onChange={handleChangeRecipe}
         />
         {showResults ? (
@@ -69,6 +76,10 @@ const AutoCompleteRecipe = () => {
                       key={item.id}
                       className="search-item"
                       data-value={item.name}
+                      onMouseDown={() => {
+                        setRecipe(item.name);
+                        setShowResults(false);
+                      }}
                     >
                       {item.name}
                     </span>

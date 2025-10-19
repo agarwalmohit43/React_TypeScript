@@ -10,4 +10,15 @@ const debounce = <T extends Procedure>(fn: T, delay: number) => {
   };
 };
 
-export { debounce };
+const memoise = <T extends (...args: any[]) => any>(fn: T) => {
+  const cache = new Map<string, ReturnType<T>>();
+  return async (...args: Parameters<T>): Promise<any> => {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) return cache.get(key);
+    const result = await fn(...args);
+    cache.set(key, result);
+    return result;
+  };
+};
+
+export { debounce, memoise };
