@@ -28,6 +28,11 @@
   cursor: pointer;
 }
 
+.pageNumber.active {
+  color: rgb(237, 51, 61);
+  cursor: not-allowed;
+}
+
 .pagination-container {
   display: flex;
   justify-content: center;

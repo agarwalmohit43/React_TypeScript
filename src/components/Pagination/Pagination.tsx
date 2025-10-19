@@ -9,6 +9,7 @@ import "./styles.css";
 
 const Pagination = () => {
   const [products, setProducts] = useState<ProductItemInterface[] | {}[]>([{}]);
+  const [activePage, setActivePage] = useState<number>(0);
   const [paginationSkip, setPaginationSkip] = useState<number>(0);
   const [totalProductsCount, setTotalProductsCount] = useState<number>(0);
   const totalPageNumber = useRef<number>(0);
@@ -27,16 +28,40 @@ const Pagination = () => {
     fetchProducts();
   }, [paginationSkip]);
 
-  const handlePaginationClick = (e: any) => {
-    const clickedPageNumber = e.target.dataset.number;
-    if (!clickedPageNumber) {
-      return;
-    }
-    const skipValues = (clickedPageNumber - 1) * DEFUALT_PRODUCT_LIMIT;
-    setPaginationSkip(skipValues);
-  };
+  const handlePaginationClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    const actions = target.dataset.actions;
 
-  console.log(paginationSkip, Math.ceil(totalProductsCount / 10));
+    if (!actions) return;
+
+    switch (actions) {
+      case "prev":
+        setPaginationSkip((prev: number) => {
+          return prev - DEFUALT_PRODUCT_LIMIT;
+        });
+        const pageNumber = Math.floor(paginationSkip / 10);
+        setActivePage(pageNumber);
+        break;
+      case "numbers":
+        const clickedPageNumber: number = Number(target.dataset.number);
+        if (!clickedPageNumber) {
+          return;
+        }
+        setActivePage(clickedPageNumber);
+        const skipValues = (clickedPageNumber - 1) * DEFUALT_PRODUCT_LIMIT;
+        setPaginationSkip(skipValues);
+        break;
+      case "next":
+        setPaginationSkip((prev) => {
+          return prev + DEFUALT_PRODUCT_LIMIT;
+        });
+        const newPage = Math.floor(paginationSkip / DEFUALT_PRODUCT_LIMIT) + 2;
+        setActivePage(newPage);
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="container">
@@ -44,25 +69,22 @@ const Pagination = () => {
         <button
           disabled={paginationSkip < DEFUALT_PRODUCT_LIMIT}
           className="pageNumber"
-          onClick={() => {
-            setPaginationSkip((prev) => {
-              return prev - DEFUALT_PRODUCT_LIMIT;
-            });
-          }}
+          data-actions="prev"
         >{`<`}</button>
         {[...Array(totalPageNumber.current)].map((_, i) => (
-          <button className="pageNumber" data-number={i + 1}>
+          <button
+            className={`pageNumber ${activePage === i + 1 ? "active" : ""}`}
+            data-number={i + 1}
+            disabled={activePage === i + 1}
+            data-actions="numbers"
+          >
             {i + 1}
           </button>
         ))}
         <button
           className="pageNumber"
           disabled={paginationSkip / 10 >= Math.floor(totalProductsCount / 10)}
-          onClick={() => {
-            setPaginationSkip((prev) => {
-              return prev + DEFUALT_PRODUCT_LIMIT;
-            });
-          }}
+          data-actions="next"
         >{`>`}</button>
       </div>
       <div className="product-container">
