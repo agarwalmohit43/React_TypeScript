@@ -1,8 +1,26 @@
 .search-container {
   margin: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-text {
   width: 500px;
   padding: 8px;
+}
+
+.search-result {
+  border: 1px solid black;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px;
+}
+
+.search-item:hover {
+  cursor: pointer;
+  background-color: grey;
 }
