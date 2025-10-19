@@ -26,6 +26,7 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "./components/RoutingBasic/components/Profile";
 import About from "./components/RoutingBasic/components/About";
 import Pagination from "./components/Pagination/Pagination";
+import AutoCompleteRecipe from "./components/AutoCompleteRecipe/AutoCompleteRecipe";
 
 export default function App() {
   return (
@@ -65,9 +66,9 @@ export default function App() {
       <FacebookTagging />
       <ChipsTag />
       <Tabs />
-      <RoutingBasic /> */}
-
-      <Pagination />
+      <RoutingBasic /> 
+      <Pagination /> */}
+      <AutoCompleteRecipe />
     </div>
   );
 }
