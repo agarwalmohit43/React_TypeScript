@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   DEFUALT_PRODUCT_LIMIT,
   DUMMY_PRODUCT_JSON_URL,
@@ -6,6 +6,7 @@ import {
 import { ProductItemInterface, ProductData } from "../../typings/pagination";
 import ProductItem from "./ProductItem";
 import "./styles.css";
+import { debounce } from "../../helpers";
 
 const Pagination = () => {
   const [products, setProducts] = useState<ProductItemInterface[] | {}[]>([{}]);
@@ -28,44 +29,53 @@ const Pagination = () => {
     fetchProducts();
   }, [paginationSkip]);
 
-  const handlePaginationClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    const actions = target.dataset.actions;
+  const handlePaginationClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      const actions = target.dataset.actions;
 
-    if (!actions) return;
+      if (!actions) return;
 
-    switch (actions) {
-      case "prev":
-        setPaginationSkip((prev: number) => {
-          return prev - DEFUALT_PRODUCT_LIMIT;
-        });
-        const pageNumber = Math.floor(paginationSkip / 10);
-        setActivePage(pageNumber);
-        break;
-      case "numbers":
-        const clickedPageNumber: number = Number(target.dataset.number);
-        if (!clickedPageNumber) {
-          return;
-        }
-        setActivePage(clickedPageNumber);
-        const skipValues = (clickedPageNumber - 1) * DEFUALT_PRODUCT_LIMIT;
-        setPaginationSkip(skipValues);
-        break;
-      case "next":
-        setPaginationSkip((prev) => {
-          return prev + DEFUALT_PRODUCT_LIMIT;
-        });
-        const newPage = Math.floor(paginationSkip / DEFUALT_PRODUCT_LIMIT) + 2;
-        setActivePage(newPage);
-        break;
-      default:
-        break;
-    }
-  };
+      switch (actions) {
+        case "prev":
+          setPaginationSkip((prev: number) => {
+            return prev - DEFUALT_PRODUCT_LIMIT;
+          });
+          const pageNumber = Math.floor(paginationSkip / 10);
+          setActivePage(pageNumber);
+          break;
+        case "numbers":
+          const clickedPageNumber: number = Number(target.dataset.number);
+          if (!clickedPageNumber) {
+            return;
+          }
+          setActivePage(clickedPageNumber);
+          const skipValues = (clickedPageNumber - 1) * DEFUALT_PRODUCT_LIMIT;
+          setPaginationSkip(skipValues);
+          break;
+        case "next":
+          setPaginationSkip((prev) => {
+            return prev + DEFUALT_PRODUCT_LIMIT;
+          });
+          const newPage =
+            Math.floor(paginationSkip / DEFUALT_PRODUCT_LIMIT) + 2;
+          setActivePage(newPage);
+          break;
+        default:
+          break;
+      }
+    },
+    []
+  );
+
+  const debouncedHandlePaginationClick = debounce(handlePaginationClick, 100);
 
   return (
     <div className="container">
-      <div className="pagination-container" onClick={handlePaginationClick}>
+      <div
+        className="pagination-container"
+        onClick={debouncedHandlePaginationClick}
+      >
         <button
           disabled={paginationSkip < DEFUALT_PRODUCT_LIMIT}
           className="pageNumber"
