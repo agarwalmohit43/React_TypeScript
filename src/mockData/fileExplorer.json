@@ -1,0 +1,31 @@
+[
+  {
+    "id": "1",
+    "name": "public",
+    "isFolder": true,
+    "children": [
+      {
+        "id": "2",
+        "name": "index.html",
+        "isFolder": false
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "src",
+    "isFolder": true,
+    "children": [
+      {
+        "id": "4",
+        "name": "component",
+        "isFolder": true,
+        "children": [{ "id": "5", "name": "Counter.tsx", "isFolder": false }]
+      },
+      { "id": "6", "name": "App.tsx", "isFolder": false },
+      { "id": "7", "name": "styles.css", "isFolder": false },
+      { "id": "8", "name": "data.json", "isFolder": false }
+    ]
+  },
+  { "id": "9", "name": "package.json", "isFolder": false }
+]

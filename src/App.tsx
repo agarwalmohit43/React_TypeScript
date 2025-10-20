@@ -27,6 +27,7 @@ import Profile from "./components/RoutingBasic/components/Profile";
 import About from "./components/RoutingBasic/components/About";
 import Pagination from "./components/Pagination/Pagination";
 import AutoCompleteRecipe from "./components/AutoCompleteRecipe/AutoCompleteRecipe";
+import FileExplorer from "./components/FileExplorer/FileExplorer";
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -84,8 +85,9 @@ export default function App() {
       <ChipsTag />
       <Tabs />
       <RoutingBasic /> 
-      <Pagination /> */}
-      <AutoCompleteRecipe />
+      <Pagination /> 
+      <AutoCompleteRecipe /> */}
+      <FileExplorer />
     </div>
   );
 }
