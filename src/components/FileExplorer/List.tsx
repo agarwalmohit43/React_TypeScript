@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { FolderStructure } from "../../typings/fileExplorer";
 
-const List = ({ data }: any) => {
+interface ListProps {
+  data: FolderStructure[];
+  setData: Dispatch<SetStateAction<FolderStructure[]>>;
+}
+
+const List = ({ data, setData }: Readonly<ListProps>) => {
   const [isExpanded, setIsExpanded] = useState<Record<string, string>>({});
+
   //   const recursiveGenerateUI = (dataArr: FolderStructure[]) => {
   //     const result = [];
   //     for (let val of dataArr) {
@@ -30,6 +36,45 @@ const List = ({ data }: any) => {
   //     return result;
   //   };
 
+  const handleActionButtonsClick = (
+    event: React.MouseEvent<HTMLDivElement>,
+    id: string
+  ) => {
+    const target = event.target as HTMLElement;
+    const action = target.dataset.action;
+    console.log(action, id);
+    switch (action) {
+      case "add-file":
+        break;
+      case "add-folder":
+        break;
+      case "delete":
+        {
+          const filteredData = data.filter((node: FolderStructure) => {
+            if (node.isFolder && node.id === id) {
+              return false;
+            }
+            return true;
+          });
+          setData(filteredData);
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
+  const getActionButtons = (id: string) => (
+    <div
+      className="actionbtn-div"
+      onClick={(event) => handleActionButtonsClick(event, id)}
+    >
+      <button data-action="add-file">Add File</button>
+      <button data-action="add-folder">Add Folder</button>
+      <button data-action="delete">Delete</button>
+    </div>
+  );
+
   return (
     <div className="container">
       {data.map((node: FolderStructure) => {
@@ -46,10 +91,13 @@ const List = ({ data }: any) => {
                 }
               >{`${isExpanded[node?.id] ? "-" : "+"}`}</span>
             )}
-            <span>{node.name}</span>
+            <div style={{ display: "flex", gap: "4px" }}>
+              <span>{node.name} </span>
+              {node.isFolder && <span>{getActionButtons(node.id)} </span>}
+            </div>
             {isExpanded[node?.id] && node?.children && node.children.length && (
               <div className="children-divs">
-                <List data={node.children} />
+                <List data={node.children} setData={setData} />
               </div>
             )}
           </div>

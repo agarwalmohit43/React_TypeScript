@@ -7,7 +7,7 @@ const FileExplorer = () => {
   return (
     <div>
       FileExplorer
-      <List data={data} />
+      <List data={data} setData={setData} />
     </div>
   );
 };
