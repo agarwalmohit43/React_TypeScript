@@ -1,0 +1,70 @@
+[
+  {
+    "id": "1",
+    "name": "Parent 1",
+    "isChecked": true,
+    "children": [
+      {
+        "id": "12",
+        "name": "Child 1",
+        "isChecked": false
+      },
+      {
+        "id": "13",
+        "name": "Child 2",
+        "isChecked": true
+      },
+      {
+        "id": "14",
+        "name": "Parent 2",
+        "isChecked": false,
+        "children": [
+          {
+            "id": "141",
+            "name": "Child 3",
+            "isChecked": true
+          },
+          {
+            "id": "142",
+            "name": "Child 4",
+            "isChecked": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Parent 3",
+    "isChecked": true,
+    "children": [
+      {
+        "id": "32",
+        "name": "Child 1",
+        "isChecked": false
+      },
+      {
+        "id": "33",
+        "name": "Child 2",
+        "isChecked": true
+      },
+      {
+        "id": "34",
+        "name": "Parent 4",
+        "isChecked": false,
+        "children": [
+          {
+            "id": "341",
+            "name": "Child 3",
+            "isChecked": true
+          },
+          {
+            "id": "342",
+            "name": "Child 4",
+            "isChecked": false
+          }
+        ]
+      }
+    ]
+  }
+]

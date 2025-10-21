@@ -28,6 +28,7 @@ import About from "./components/RoutingBasic/components/About";
 import Pagination from "./components/Pagination/Pagination";
 import AutoCompleteRecipe from "./components/AutoCompleteRecipe/AutoCompleteRecipe";
 import FileExplorer from "./components/FileExplorer/FileExplorer";
+import { NestedCheckBox } from "./components/NestedCheckBox";
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -86,8 +87,9 @@ export default function App() {
       <Tabs />
       <RoutingBasic /> 
       <Pagination /> 
-      <AutoCompleteRecipe /> */}
-      <FileExplorer />
+      <AutoCompleteRecipe /> 
+      <FileExplorer /> */}
+      <NestedCheckBox />
     </div>
   );
 }
