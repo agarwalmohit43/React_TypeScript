@@ -4,6 +4,8 @@ import "./styles.css";
 import List from "./List";
 const FileExplorer = () => {
   const [data, setData] = useState(fileExplorerJSON);
+  console.log("main Data", data);
+
   return (
     <div>
       FileExplorer
