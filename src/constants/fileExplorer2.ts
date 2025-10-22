@@ -1,0 +1,6 @@
+export enum DataActions {
+  ADD_FILE = "ADD_FILE",
+  ADD_FOLDER = "ADD_FOLDER",
+  TOGGLE_EXPAND = "TOGGLE_EXPAND",
+  DELETE_FOLDER = "DELETE",
+}
