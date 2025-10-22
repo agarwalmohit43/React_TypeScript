@@ -88,7 +88,7 @@ export default function App() {
       <RoutingBasic /> 
       <Pagination /> 
       <AutoCompleteRecipe /> 
-      <FileExplorer /> */}
+      <FileExplorer />*/}
       <NestedCheckBox />
     </div>
   );
