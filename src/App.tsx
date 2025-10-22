@@ -30,6 +30,7 @@ import AutoCompleteRecipe from "./components/AutoCompleteRecipe/AutoCompleteReci
 import FileExplorer from "./components/FileExplorer/FileExplorer";
 import { NestedCheckBox } from "./components/NestedCheckBox";
 import { default as FileExplorer2 } from "./components/FileExplorer2/FileExplorer";
+import { StickyNotes } from "./components/StickyNotes";
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -90,8 +91,9 @@ export default function App() {
       <Pagination /> 
       <AutoCompleteRecipe /> 
       <FileExplorer />
-      <NestedCheckBox />*/}
-      <FileExplorer2 />
+      <NestedCheckBox />
+      <FileExplorer2 /> */}
+      <StickyNotes />
     </div>
   );
 }

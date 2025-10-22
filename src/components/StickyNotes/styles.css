@@ -1,0 +1,15 @@
+.sticky-container {
+  position: relative;
+}
+
+.sticky-message {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  background-color: yellow;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  overflow: scroll;
+  cursor: grab;
+}
