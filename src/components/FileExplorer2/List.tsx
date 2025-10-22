@@ -17,13 +17,15 @@ const List = ({ data, handleDataUpdate }: Readonly<ListProps>) => {
     handleDataUpdate(node, action);
   };
 
-  const getActionButtons = (node: FolderStructure, index: number) => (
+  const getActionButtons = (node: FolderStructure, isFolder = true) => (
     <div
       className="actionbtn-div"
       onClick={(event) => handleActionButtonsClick(event, node)}
     >
-      <button data-action={DataActions.ADD_FILE}>Add File</button>
-      <button data-action={DataActions.ADD_FOLDER}>Add Folder</button>
+      {isFolder && <button data-action={DataActions.ADD_FILE}>Add File</button>}
+      {isFolder && (
+        <button data-action={DataActions.ADD_FOLDER}>Add Folder</button>
+      )}
       <button data-action={DataActions.DELETE_FOLDER}>Delete</button>
     </div>
   );
@@ -48,9 +50,7 @@ const List = ({ data, handleDataUpdate }: Readonly<ListProps>) => {
                 >
                   {node?.name}{" "}
                 </span>
-                {node?.isFolder && (
-                  <span>{getActionButtons(node, index)} </span>
-                )}
+                <span>{getActionButtons(node, node?.isFolder)} </span>
               </div>
             </div>
             {isExpanded && node?.children && !!node.children.length && (

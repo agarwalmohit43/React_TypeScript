@@ -16,13 +16,13 @@
     "id": "3",
     "name": "src",
     "isFolder": true,
-    "isExpanded": false,
+    "isExpanded": true,
     "children": [
       {
         "id": "4",
         "name": "component",
         "isFolder": true,
-        "isExpanded": false,
+        "isExpanded": true,
         "children": [{ "id": "5", "name": "Counter.tsx", "isFolder": false }]
       },
       { "id": "6", "name": "App.tsx", "isFolder": false },
