@@ -90,17 +90,35 @@ const FileExplorer = () => {
     });
   };
 
+  // const deleteNode = (
+  //   nodes: FolderStructure[],
+  //   targetNode: FolderStructure
+  // ): FolderStructure[] => {
+  //   return nodes
+  //     .filter((node) => node.id !== targetNode.id)
+  //     .map((node) =>
+  //       node.children?.length
+  //         ? { ...node, children: deleteNode(node.children, targetNode) }
+  //         : node
+  //     );
+  // };
+
   const deleteNode = (
     nodes: FolderStructure[],
     targetNode: FolderStructure
   ): FolderStructure[] => {
-    return nodes
-      .filter((node) => node.id !== targetNode.id)
-      .map((node) =>
-        node.children?.length
-          ? { ...node, children: deleteNode(node.children, targetNode) }
-          : node
-      );
+    return nodes.reduce<FolderStructure[]>((acc, node) => {
+      if (node.id === targetNode.id) {
+        return acc;
+      }
+      if (node?.children?.length) {
+        acc.push({ ...node, children: deleteNode(node.children, targetNode) });
+      } else {
+        acc.push(node);
+      }
+
+      return acc;
+    }, []);
   };
 
   const handleDataUpdate = useCallback(
