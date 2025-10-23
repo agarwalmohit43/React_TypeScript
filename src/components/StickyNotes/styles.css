@@ -3,7 +3,7 @@
 }
 
 .sticky-message {
-  position: absolute;
+  position: relative;
   width: 100px;
   height: 30px;
   background-color: yellow;
@@ -12,4 +12,14 @@
   border-radius: 10px;
   overflow: scroll;
   cursor: grab;
+}
+
+button {
+  background-color: rgb(226, 219, 219);
+  transition: all 500ms ease-in-out;
+}
+
+button:hover {
+  background-color: rgb(231, 14, 14);
+  transform: rotateX("120");
 }

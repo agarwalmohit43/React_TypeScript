@@ -21,6 +21,7 @@ const StickyNotes = () => {
   };
 
   const handleAddMessage = () => {
+    if (!message) return;
     setData((prev) => [
       ...prev,
       { id: Math.random().toString(36).slice(2), message },
@@ -33,7 +34,9 @@ const StickyNotes = () => {
       StickyNotes
       <div className="sticky-input">
         <input type="text" onChange={handleChange} value={message} />
-        <button onClick={handleAddMessage}>Add Note</button>
+        <button onClick={handleAddMessage} disabled={!message}>
+          Add Note
+        </button>
       </div>
       <div className="sticky-container">
         {!!data.length &&
