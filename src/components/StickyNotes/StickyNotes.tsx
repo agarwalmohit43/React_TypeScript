@@ -15,9 +15,7 @@ const StickyNotes = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event?.target?.value.trim();
-    if (value) {
-      setMessage(value);
-    }
+    setMessage(value);
   };
 
   const handleAddMessage = () => {

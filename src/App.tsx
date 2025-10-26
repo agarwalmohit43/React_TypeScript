@@ -29,8 +29,10 @@ import Pagination from "./components/Pagination/Pagination";
 import AutoCompleteRecipe from "./components/AutoCompleteRecipe/AutoCompleteRecipe";
 import FileExplorer from "./components/FileExplorer/FileExplorer";
 import { NestedCheckBox } from "./components/NestedCheckBox";
+import { NestedCheckBox as NestedCheckBox2 } from "./components/NestedCheckBox2";
 import { default as FileExplorer2 } from "./components/FileExplorer2/FileExplorer";
 import { StickyNotes } from "./components/StickyNotes";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -51,20 +53,21 @@ export default function App() {
   return !isOnline ? (
     <h1>You are offline</h1>
   ) : (
-    <div
-      className="App"
-      style={{ display: "flex", flexDirection: "column", gap: "20px" }}
-    >
-      <div>
-        <BasicRouter />
-        {/* <Suspense fallback={<div>Loading....</div>}>
+    <ErrorBoundary>
+      <div
+        className="App"
+        style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+      >
+        <div>
+          <BasicRouter />
+          {/* <Suspense fallback={<div>Loading....</div>}>
           <Routes>
             <Route path={"/profile"} element={<Profile />} />
             <Route path={"/about"} element={<About />} />
           </Routes>
         </Suspense> */}
-      </div>
-      {/* <TodoList />
+        </div>
+        {/* <TodoList />
       <Counter /> 
       
       <StopWatch /> 
@@ -92,8 +95,10 @@ export default function App() {
       <AutoCompleteRecipe /> 
       <FileExplorer />
       <NestedCheckBox />
-      <FileExplorer2 /> */}
-      <StickyNotes />
-    </div>
+      <FileExplorer2 /> 
+      <StickyNotes />*/}
+        <NestedCheckBox2 />
+      </div>
+    </ErrorBoundary>
   );
 }
