@@ -97,7 +97,20 @@ export default function App() {
       <NestedCheckBox />
       <FileExplorer2 /> 
       <StickyNotes />*/}
-        <NestedCheckBox2 />
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "32px",
+            justifyContent: "center",
+            width: "50%",
+          }}
+        >
+          <FileExplorer2 />
+
+          <NestedCheckBox2 />
+        </div>
       </div>
     </ErrorBoundary>
   );
