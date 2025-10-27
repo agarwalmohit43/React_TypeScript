@@ -11,7 +11,9 @@
             "dom",
             "es2015"
         ],
-        "jsx": "react-jsx",
-        "downlevelIteration": true
+        "jsx": "react-jsx", // Correct for modern React
+        "downlevelIteration": true,
+        "moduleResolution": "bundler", // Correct for modern bundlers
+        "module": "esnext" // Correct for bundler resolution
     }
 }
