@@ -34,6 +34,7 @@ import { default as FileExplorer2 } from "./components/FileExplorer2/FileExplore
 import { StickyNotes } from "./components/StickyNotes";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import ChessBoard from "./components/ChessBoard/ChessBoard";
+import { ImageIcon } from "./components/ImageIcon";
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -97,23 +98,23 @@ export default function App() {
       <FileExplorer />
       <NestedCheckBox />
       <FileExplorer2 /> 
-      <StickyNotes />*/}
+      <StickyNotes />
+      <ChessBoard />*/}
+
+        <ImageIcon />
 
         {/* <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "32px",
-            justifyContent: "center",
-            width: "50%",
+        style={{
+          display: "flex",
+          flexDirection: "column",            
+          gap: "32px",
+          justifyContent: "center",
+          width: "50%",
           }}
-        >
-          <FileExplorer2 />
-
-          <NestedCheckBox2 />
-        </div> */}
-
-        <ChessBoard />
+      >
+        <FileExplorer2 />
+        <NestedCheckBox2 />
+       </div> */}
       </div>
     </ErrorBoundary>
   );
