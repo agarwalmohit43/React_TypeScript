@@ -33,6 +33,7 @@ import { NestedCheckBox as NestedCheckBox2 } from "./components/NestedCheckBox2"
 import { default as FileExplorer2 } from "./components/FileExplorer2/FileExplorer";
 import { StickyNotes } from "./components/StickyNotes";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import ChessBoard from "./components/ChessBoard/ChessBoard";
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -98,7 +99,7 @@ export default function App() {
       <FileExplorer2 /> 
       <StickyNotes />*/}
 
-        <div
+        {/* <div
           style={{
             display: "flex",
             flexDirection: "column",
@@ -110,7 +111,9 @@ export default function App() {
           <FileExplorer2 />
 
           <NestedCheckBox2 />
-        </div>
+        </div> */}
+
+        <ChessBoard />
       </div>
     </ErrorBoundary>
   );
