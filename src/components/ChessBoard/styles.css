@@ -1,0 +1,21 @@
+.container {
+  border: 1px solid black;
+  width: fit-content;
+  margin: 10px;
+}
+
+span {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.color-white {
+  background-color: white;
+  color: white;
+}
+
+.color-black {
+  background-color: black;
+  color: black;
+}

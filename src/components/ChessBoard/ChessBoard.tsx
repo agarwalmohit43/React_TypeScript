@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import "./styles.css";
+import ChessRow from "./ChessRow";
 
 const ChessBoard = () => {
   const size = 8;
@@ -28,7 +30,17 @@ const ChessBoard = () => {
   return (
     <div>
       ChessBoard
-      <div></div>
+      <div className="container">
+        {data &&
+          !!data.length &&
+          data.map((item: any, index: number) => (
+            <ChessRow
+              key={Math.random().toString(36).slice(2)}
+              data={item}
+              row={index + 1}
+            />
+          ))}
+      </div>
     </div>
   );
 };
