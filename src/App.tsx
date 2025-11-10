@@ -35,9 +35,16 @@ import { StickyNotes } from "./components/StickyNotes";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import ChessBoard from "./components/ChessBoard/ChessBoard";
 import { ImageIcon } from "./components/ImageIcon";
+import useDebounce from "./hooks/useDebounce";
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
+
+  const print = () => {
+    console.log("Print function");
+  };
+
+  const debouncePrint = useDebounce(print, 5000);
 
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);
@@ -51,6 +58,8 @@ export default function App() {
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
+
+  debouncePrint();
 
   return !isOnline ? (
     <h1>You are offline</h1>
